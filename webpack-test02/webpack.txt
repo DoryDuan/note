@@ -1,0 +1,139 @@
+babel的配置：
+ 总结写法：
+ npm install babel-loader babel-core babel-preset-env --save-dev
+ var path = require('path')
+ module:{
+	 	rules:[
+	 	{
+	 		test:/\.js$/,
+	 		loader:'babel-loader',
+	 		include:path.resolve(__dirname, "/src"),
+	 		exclude:path.resolve(__dirname,'/node_modules'),
+	 		options: {'presets': ['env']}
+	 	}
+	 	]
+	 }
+
+css配置：https://cnpmjs.org/package/postcss
+npm install css-loader style-loader postcss-loader autoprefixer precss --save-dev
+webpack.config.js文件：
+{
+    test: /\.css/,
+    use: ['style-loader',
+         {
+            loader: 'css-loader',
+            options: {
+                importLoaders: 1,//为了解析@import xxx.css
+            }
+        },
+  		{ loader: 'postcss-loader',
+    	options: {
+    		plugins: (loader) => [
+    			require('autoprefixer')
+      ]}}]}
+ 	]
+ }
+ postcss.config.js文件：
+ module.exports = {
+    plugins: [
+        require('precss'),
+        require('autoprefixer')
+    ]
+}
+less配置：(css-loader不需要配置importLoaders，会自动解析@import xxx.css 和@impor xxx.less)
+npm install less less-loader --save-dev
+
+{
+	test:/\.less$/,
+	use:[ 'style-loader', 'css-loader','postcss-loader','less-loader' ]
+}
+sass配置：sass-loader依赖node-sass
+npm install sass sass-loader --save-dev
+npm rebuild node-sass --force
+{
+	test:/\.scss$/,
+	use:[ 'style-loader', 'css-loader','postcss-loader','sass-loader' ]
+}
+css和less配置写一起：
+test:/\.(less|css)$/,
+	use:[
+		'style-loader','css-loader',
+   	  	{ 
+	        loader: 'postcss-loader',
+	        options: {
+	         	plugins: [ require('postcss-import')(),require('autoprefixer')()]
+	      	}
+  	  	},
+  	  	'less-loader'
+    ]
+
+html模板配置(返回的是模板字符串)
+npm install html-loader --save-dev
+{
+  test:/\.html$/,
+  loader:'html-loader'
+}
+dom.innerHTML=layer.tpl
+ejs模板配置：（返回的是一个函数）
+npm install ejs-loader --save-dev
+{
+  test:/\.tpl$/,//可以是tpl也可以是ejs结尾
+  loader:'ejs-loader'
+}
+dom.innerHTML=layer.tpl({
+    name:'Dory',
+    arr:["apple","xiaomi"]
+  }); 
+
+图片配置（无论是index.html还是.css背景图，都会被file-laoder处理）
+npm install file-loader --save-dev
+{
+    test:/\.(png|jpg|gif|svg)$/,
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
+          name: 'assets/[name]-[hash:5].[ext]'//自己命名打包以后的图片名称
+        }  
+      }
+    ]
+  }
+  也可以这种写法：
+  {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loaders: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+      ]
+  }
+.ejs/.tpl结尾的模板中只能引用绝对路径的图片，如果需要引用相对路径的图片，需要写成下面这样：
+<img src="${require('../../assets/baidu.png')}" alt="">
+
+url-loader跟file-loader相似。可以设置一个limit参数，小于limit的图片会处理成base64编码
+npm install url-loader --save-dev
+{
+    test:/\.(png|jpg|gif|svg)$/,
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
+          limit:12000,
+          name: 'assets/[name]-[hash:5].[ext]'
+        }  
+      }
+    ]
+  }
+image-webpack-loader图片压缩（需要配合file-loader）
+npm install image-webpack-loader --save-dev
+{
+  test:/\.(png|jpg|gif|svg)$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'assets/[name]-[hash:5].[ext]'
+      }  
+    },
+    'image-webpack-loader'
+  ]
+}
