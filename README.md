@@ -1,3 +1,4 @@
+# git:
 环境配置：
 	git config --global user.name "humingx"
     git config --global user.email "humingx@yeah.net"
@@ -52,3 +53,6 @@
 	!567   #执行第567个命令
 	rm -fr #删除文件夹以及文件夹下所有的东东
 	
+# axios
+
+	[axios使用]: http://blog.acohome.cn/2017/09/26/axios-10-axioshan-shu-de-shi-yong-zi-shi/
