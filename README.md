@@ -55,4 +55,15 @@
 	
 # axios
 
-	[axios使用]: http://blog.acohome.cn/2017/09/26/axios-10-axioshan-shu-de-shi-yong-zi-shi/
+[axios使用](http://blog.acohome.cn/2017/09/26/axios-10-axioshan-shu-de-shi-yong-zi-shi/)
+
+[axios拦截器的使用](https://blog.csdn.net/qq_36207983/article/details/78881376)
+
+[axios的传参](https://www.jianshu.com/p/b22d03dfe006)
+
+方法一：
+	    headers:{'Content-Type':'application/x-www-form-urlencoded'};
+	    data = Qs.stringify(data);
+	    
+方法二：
+	data = qs.stringify(data, {arrayFormat: 'brackets'})
