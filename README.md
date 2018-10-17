@@ -1,4 +1,4 @@
-# git:
+# git
 环境配置：
 	git config --global user.name "humingx"
     git config --global user.email "humingx@yeah.net"
@@ -36,9 +36,6 @@
 	git push origin b3 # push到远程分支
 	git merge b3 #把b3merge到当前分支
 
-
-
-# 
 	git init # 初始化，创建本地仓库，.git目录，有该本地仓库的信息
 	git remote add origin git@github.com:DoryDuan/test1.git  # 把本地仓库和远程仓库联系起来，.git目录更新，会记录远程仓库的信息。
 
@@ -67,3 +64,6 @@
 	    
 方法二：
 	data = qs.stringify(data, {arrayFormat: 'brackets'})
+	
+# 跨域
+[JSONP知识--mui.getJSONP()实现Web跨域](http://ask.dcloud.net.cn/article/833)
