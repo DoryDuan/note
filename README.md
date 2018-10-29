@@ -1,4 +1,5 @@
 # git
+
 环境配置：
 	git config --global user.name "humingx"
     git config --global user.email "humingx@yeah.net"
@@ -39,6 +40,8 @@
 	git init # 初始化，创建本地仓库，.git目录，有该本地仓库的信息
 	git remote add origin git@github.com:DoryDuan/test1.git  # 把本地仓库和远程仓库联系起来，.git目录更新，会记录远程仓库的信息。
 
+
+参考网址 https://www.cnblogs.com/wuer888/p/7655856.html
 
 #  常用linux命令
 	
