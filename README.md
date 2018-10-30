@@ -13,7 +13,14 @@
 	git commit 
 	git push
 
-
+远程到本地，创建新分支到远程
+	git clone
+	git checkout –b dev
+	git branch --set-upstream dev origin/dev  本地分支和远程分支关联
+	git add 
+	git commit 
+	git push
+	
 添加本地仓库到远程：
 	远程创建一个仓库
 	进入需要和远程连接的本地文件夹
