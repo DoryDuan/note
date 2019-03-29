@@ -68,6 +68,8 @@
 
 [axios的传参](https://www.jianshu.com/p/b22d03dfe006)
 
+[qs.stringify处理参数](https://www.jianshu.com/p/62546d82f380)
+
 方法一：
 	    headers:{'Content-Type':'application/x-www-form-urlencoded'};
 	    data = Qs.stringify(data);
